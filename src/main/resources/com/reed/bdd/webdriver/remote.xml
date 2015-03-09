@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       profile="remote">
+    <!-- mvn integration-test -Dspring.profiles.active=remote -DREMOTE_WEBDRIVER_URL=http://10.1.3.122:4444/wd/hub -->
+    <bean id="driverProvider" class="org.jbehave.web.selenium.RemoteWebDriverProvider" >
+        <constructor-arg ref="chromeDesiredCapabilities"/>
+    </bean>
+    <bean id="chromeDesiredCapabilities" class="org.openqa.selenium.remote.DesiredCapabilities" factory-method="chrome" />
+    <bean id="webDriverProvider" class="org.jbehave.web.selenium.PerStoryWebDriverSteps">
+        <constructor-arg ref="driverProvider"/>
+    </bean>
+</beans>

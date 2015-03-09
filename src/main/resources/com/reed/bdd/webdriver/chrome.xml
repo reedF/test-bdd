@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.2.xsd"
+       profile="chrome">
+    <!-- mvn integration-test -Dspring.profiles.active=chrome -Dbrowser=chrome -Dwebdriver.chrome.driver=/usr/local/chromedriver -->
+    <!-- mvn integration-test -Dspring.profiles.active=chrome -Dbrowser=chrome -Dwebdriver.chrome.driver=C:\Program Files (x86)\Google\Chrome\Application\chrome.exe-->
+    <bean id="driverProvider" class="org.jbehave.web.selenium.PropertyWebDriverProvider" >
+    </bean>
+    <bean id="webDriverProvider" class="org.jbehave.web.selenium.PerStoryWebDriverSteps">
+        <constructor-arg ref="driverProvider"/>
+    </bean>
+</beans>
